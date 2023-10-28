@@ -39,10 +39,10 @@ export const Navigation = () => {
               </ul>
             </li> 
 
-            <li style={{marginTop: 15}}><a href="#">Employee :: Apps :: Roles</a>
+            <li style={{marginTop: 15}}><a href="#">User :: Apps :: Roles</a>
               <ul>
-                <li><a href="/employee_apps_roles/list">List - Employee Apps Roles</a></li>
-                <li><a href="/employee_apps_roles/create">Create - Employee Apps Roles</a></li>
+                <li><a href="/user_apps_roles/list">List - User Apps Roles</a></li>
+                <li><a href="/user_apps_roles/create">Create - User Apps Roles</a></li>
               </ul>
             </li>                                                        
           </ul>

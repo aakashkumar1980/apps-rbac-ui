@@ -15,8 +15,8 @@ interface Role {
   code: string;
   description: string;
 }
-function CreateEmployeeAppsRoles() {
-  const [employeeAppsRolesData, setEmployeeAppsRolesData] = useState({email: '', appCode: '', roleCode: ''});
+function CreateUserAppsRoles() {
+  const [userAppsRolesData, setUserAppsRolesData] = useState({email: '', appCode: '', roleCode: ''});
 
   const [app, setApp] = useState<App[]>([]);
   const [role, setRole] = useState<Role[]>([]);
@@ -34,7 +34,7 @@ function CreateEmployeeAppsRoles() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setEmployeeAppsRolesData((prevData) => ({ ...prevData, [name]: value }));
+    setUserAppsRolesData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,23 +43,23 @@ function CreateEmployeeAppsRoles() {
 
     // Send a POST request to create a new object
     const createData = {
-      ...employeeAppsRolesData,
+      ...userAppsRolesData,
       appCode: selectedApp,
       roleCode: selectedRole
     };    
     debugger;
-    axios.post(`http://localhost:${privilegePassBackendPort}/api/employee_apps_roles`, createData)
+    axios.post(`http://localhost:${privilegePassBackendPort}/api/user_apps_roles`, createData)
       .then((response) => {
         console.log('App created:', response.data);
-        showModal("Result", "Employee Apps Roles created successfully");
+        showModal("Result", "User Apps Roles created successfully");
         
         setTimeout(() => {
           closeModal();
-          setEmployeeAppsRolesData({email: '', appCode: '', roleCode: '' });
+          setUserAppsRolesData({email: '', appCode: '', roleCode: '' });
         }, 5000);        
       })
       .catch((error) => {
-        showModal("Result", "Employee Apps Roles created failed with the following error: "+error);
+        showModal("Result", "User Apps Roles created failed with the following error: "+error);
         console.error('Error creating app:', error);
         
       });
@@ -67,7 +67,7 @@ function CreateEmployeeAppsRoles() {
 
   return (
         <div className="container">
-            <div className="text">Employee Apps Roles</div>
+            <div className="text">User Apps Roles</div>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <div className="input-data">
@@ -75,11 +75,11 @@ function CreateEmployeeAppsRoles() {
                             type="text"
                             id="email"
                             name="email"
-                            value={employeeAppsRolesData.email}
+                            value={userAppsRolesData.email}
                             onChange={handleChange}
                         />
                         <div className="underline"></div>
-                        <label htmlFor="code">Employee Email:</label>
+                        <label htmlFor="code">User Email:</label>
                     </div>
                 </div>              
                 <div className="form-row">
@@ -117,4 +117,4 @@ function CreateEmployeeAppsRoles() {
 
   );
 }
-export default CreateEmployeeAppsRoles;
+export default CreateUserAppsRoles;

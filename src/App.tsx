@@ -12,8 +12,8 @@ import RoleList from "./components/pages/role/List";
 import RoleCreate from "./components/pages/role/Create";
 import RoleAppFeaturesList from "./components/pages/role_app_features/List";
 import RoleAppFeaturesCreate from "./components/pages/role_app_features/Create";
-import EmployeeAppsRolesList from "./components/pages/employee_apps_roles/List";
-import EmployeeAppsRolesCreate from "./components/pages/employee_apps_roles/Create";
+import UserAppsRolesList from "./components/pages/user_apps_roles/List";
+import UserAppsRolesCreate from "./components/pages/user_apps_roles/Create";
 
 function App() {
   return (
@@ -40,8 +40,8 @@ function App() {
                   <Route path="/role_app_features/list" element={<RoleAppFeaturesList/>}></Route>
                   <Route path="/role_app_features/create" element={<RoleAppFeaturesCreate/>}></Route>  
 
-                  <Route path="/employee_apps_roles/list" element={<EmployeeAppsRolesList/>}></Route>
-                  <Route path="/employee_apps_roles/create" element={<EmployeeAppsRolesCreate/>}></Route>                                                                      
+                  <Route path="/user_apps_roles/list" element={<UserAppsRolesList/>}></Route>
+                  <Route path="/user_apps_roles/create" element={<UserAppsRolesCreate/>}></Route>                                                                      
                 </Routes>          
               </BrowserRouter>
             </div>
