@@ -43,7 +43,7 @@ function RoleAppFeaturesList() {
         <thead>
           <tr>
             <th>Role</th>
-            <th style={{width:"50%"}}>(App) App Features</th>
+            <th style={{width:"50%", textAlign:"center"}} colSpan={2}>App Features <p>(App)</p></th>
             <th></th>
           </tr>
         </thead>
@@ -51,7 +51,7 @@ function RoleAppFeaturesList() {
           {roleAppFeatures.map((roleAppFeatures) => (
             <tr key={`${roleAppFeatures.roleCode}-${roleAppFeatures.appFeaturesCode}`}>
               <td>{roleAppFeatures.roleDescription}</td>
-              <td style={{width:"50%"}}>({roleAppFeatures.appDescription}) {roleAppFeatures.appFeaturesDescription}</td>
+              <td style={{width:"30%"}}>{roleAppFeatures.appFeaturesDescription}</td><td style={{width:"30%"}}><p>({roleAppFeatures.appDescription})</p></td>
               <td><button className="button-62" onClick={() => handleDelete(roleAppFeatures.roleCode, roleAppFeatures.appFeaturesCode)}>Delete</button></td>
             </tr>
           ))}

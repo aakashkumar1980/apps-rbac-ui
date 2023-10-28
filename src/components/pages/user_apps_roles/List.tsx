@@ -52,7 +52,7 @@ function UserAppsRolesList() {
         <tbody>
           {userAppsRoles.map((userAppsRoles) => (
             <tr key={`${userAppsRoles.email}-${userAppsRoles.appCode}-${userAppsRoles.roleCode}`}>
-              <td  style={{width: '40%'}}>{userAppsRoles.email}</td>
+              <td  style={{width: '30%'}}>{userAppsRoles.email}</td>
               <td>{userAppsRoles.appDescription}</td>
               <td>{userAppsRoles.roleDescription}</td>
               <td><button className="button-62" onClick={() => handleDelete(userAppsRoles.email, userAppsRoles.appCode, userAppsRoles.roleCode)}>Delete</button></td>

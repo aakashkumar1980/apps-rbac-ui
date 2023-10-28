@@ -1,24 +1,43 @@
-const fs = require('fs');
-var propertiesReader = require('properties-reader');
+const axios = require('axios');
+const propertiesReader = require('properties-reader');
 
-try {
-    const configData = fs.readFileSync("/home/ubuntu/Desktop/PRIVATE-LEARNINGv2/PROJECTS/LEARNING/SERVER-PORTS.json", 'utf-8');
-    const config = JSON.parse(configData);
-
-    console.log("PORT: ", config.REACT_APP_PRIVILEGEPASS_UI);
-    console.log("PORT (Backend Server): ", config.NODE_APP_PRIVILEGEPASS_BACKEND);
-
-    const properties = propertiesReader('.env', { writer: { saveSections: true } });
-    properties.set("PORT", config.REACT_APP_PRIVILEGEPASS_UI);
-    properties.set("REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND", config.NODE_APP_PRIVILEGEPASS_BACKEND);    
-    properties.save('.env', function then(err, data) {
-        if (err) {
-            console.log("error in write a properties file");
-            process.exit(1);
-        }
-        console.log("saved data to properties file");
-    });
-} catch (error) {
-    console.error('Error reading or parsing the configuration file:', error);
-    process.exit(1);
+async function loadConfigFromCloud() {
+    try {
+        const url = 'https://raw.githubusercontent.com/aakashkumar1980/apps-configs/main/SERVER-PORTS.json';
+        const response = await axios.get(url);
+        return (response.data)[0];
+    } catch (error) {
+        throw new Error(`Error fetching config from GitHub: ${error.message}`);
+    }
 }
+
+async function updateEnvWithConfig(config) {
+    const properties = propertiesReader('.env', { writer: { saveSections: true } });
+    properties.set("PORT", config.PRIVILEGEPASS_APPLICATION.UI_APP_PORT);
+    properties.set("BACKEND_SERVER_PORT", config.PRIVILEGEPASS_APPLICATION.BACKEND_SERVER_PORT);
+    console.log("PORT: ", properties.get("PORT"));
+    console.log("PORT (Backend Server): ", properties.get("BACKEND_SERVER_PORT"));
+
+    return new Promise((resolve, reject) => {
+        properties.save('.env', function(err, data) {
+            if (err) {
+                reject(new Error("Error saving to .env file"));
+            } else {
+                console.log("Saved data to .env file");
+                resolve();
+            }
+        });
+    });
+}
+
+async function main() {
+    try {
+        const config = await loadConfigFromCloud();
+        await updateEnvWithConfig(config);
+    } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+    }
+}
+
+main();

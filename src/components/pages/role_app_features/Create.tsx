@@ -88,7 +88,7 @@ function CreateRoleAppFeatures() {
                         <option value="">SELECT A FEATURE...</option>
                         {appFeatures.map((appFeatures) => (
                           <option key={appFeatures.code} value={appFeatures.code}>
-                            ({appFeatures.appDescription}) {appFeatures.description}
+                            {appFeatures.description} ({appFeatures.appDescription})
                           </option>
                         ))}
                       </select>
