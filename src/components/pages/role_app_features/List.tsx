@@ -8,6 +8,7 @@ const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BA
 interface RoleAppFeatures {
   roleCode: string;
   roleDescription: string;  
+  appDescription: string;
   appFeaturesCode: string;
   appFeaturesDescription: string;
 }
@@ -42,7 +43,7 @@ function RoleAppFeaturesList() {
         <thead>
           <tr>
             <th>Role</th>
-            <th>App Features</th>
+            <th style={{width:"50%"}}>(App) App Features</th>
             <th></th>
           </tr>
         </thead>
@@ -50,7 +51,7 @@ function RoleAppFeaturesList() {
           {roleAppFeatures.map((roleAppFeatures) => (
             <tr key={`${roleAppFeatures.roleCode}-${roleAppFeatures.appFeaturesCode}`}>
               <td>{roleAppFeatures.roleDescription}</td>
-              <td>{roleAppFeatures.appFeaturesDescription}</td>
+              <td style={{width:"50%"}}>({roleAppFeatures.appDescription}) {roleAppFeatures.appFeaturesDescription}</td>
               <td><button className="button-62" onClick={() => handleDelete(roleAppFeatures.roleCode, roleAppFeatures.appFeaturesCode)}>Delete</button></td>
             </tr>
           ))}

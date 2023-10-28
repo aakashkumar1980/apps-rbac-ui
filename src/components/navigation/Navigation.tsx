@@ -32,14 +32,14 @@ export const Navigation = () => {
                 <li><a href="/role/create">Create - Role</a></li>
               </ul>
             </li> 
-            <li><a href="#">Role :: App Features</a>
+
+            <li style={{marginTop: 30}}><a href="#">Role :: App Features</a>
               <ul>
                 <li><a href="/role_app_features/list">List - Role App Features</a></li>
                 <li><a href="/role_app_features/create">Create - Role App Features</a></li>
               </ul>
-            </li> 
-
-            <li style={{marginTop: 15}}><a href="#">User :: Apps :: Roles</a>
+            </li>
+            <li><a href="#">User :: Apps :: Roles</a>
               <ul>
                 <li><a href="/user_apps_roles/list">List - User Apps Roles</a></li>
                 <li><a href="/user_apps_roles/create">Create - User Apps Roles</a></li>
