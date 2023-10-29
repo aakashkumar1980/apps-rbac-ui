@@ -32,14 +32,14 @@ function CreateRole() {
       })
       .catch((error) => {
         showModal("Result", "Role created failed with the following error: "+error);
-        console.error('Error creating role:', error);
+        console.error('Error creating Role:', error);
         
       });
   };
 
   return (
         <div className="container">
-            <div className="text">Create Role</div>
+            <div className="text">Create - Role</div>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <div className="input-data">

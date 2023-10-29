@@ -11,8 +11,8 @@ interface App {
   code: string;
   description: string;
 }
-function CreateAppFeatures() {
-  const [appFeaturesData, setAppFeaturesData] = useState({code: '', description: '', appCode: ''});
+function CreateFeature() {
+  const [featureData, setFeatureData] = useState({code: '', description: '', appCode: ''});
 
   const [app, setApp] = useState<App[]>([]);
   const [selectedApp, setSelectedApp] = useState<string>(''); // Initialize as an empty string
@@ -25,7 +25,7 @@ function CreateAppFeatures() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setAppFeaturesData((prevData) => ({ ...prevData, [name]: value }));
+    setFeatureData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,30 +34,30 @@ function CreateAppFeatures() {
 
     // Send a POST request to create a new APP
     const createData = {
-      ...appFeaturesData,
+      ...featureData,
       appCode: selectedApp,
     };    
     debugger;
-    axios.post(`http://localhost:${privilegePassBackendPort}/api/app_features`, createData)
+    axios.post(`http://localhost:${privilegePassBackendPort}/api/feature`, createData)
       .then((response) => {
-        console.log('App created:', response.data);
-        showModal("Result", "App created successfully");
+        console.log('Feature created:', response.data);
+        showModal("Result", "Feature created successfully");
         
         setTimeout(() => {
           closeModal();
-          setAppFeaturesData({ code: '', description: '', appCode: '' });
+          setFeatureData({ code: '', description: '', appCode: '' });
         }, 5000);        
       })
       .catch((error) => {
-        showModal("Result", "App created failed with the following error: "+error);
-        console.error('Error creating app:', error);
+        showModal("Result", "Feature created failed with the following error: "+error);
+        console.error('Error creating Feature:', error);
         
       });
   };
 
   return (
         <div className="container">
-            <div className="text">Create App Features</div>
+            <div className="text">Create - Feature</div>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <div className="input-data">
@@ -78,7 +78,7 @@ function CreateAppFeatures() {
                             type="text"
                             id="code"
                             name="code"
-                            value={appFeaturesData.code}
+                            value={featureData.code}
                             onChange={handleChange}
                         />
                         <div className="underline"></div>
@@ -91,7 +91,7 @@ function CreateAppFeatures() {
                             type="text"
                             id="description"
                             name="description"
-                            value={appFeaturesData.description}
+                            value={featureData.description}
                             onChange={handleChange}
                         />
                         <div className="underline"></div>
@@ -108,4 +108,4 @@ function CreateAppFeatures() {
 
   );
 }
-export default CreateAppFeatures;
+export default CreateFeature;

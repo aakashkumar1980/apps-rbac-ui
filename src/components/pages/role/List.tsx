@@ -28,13 +28,13 @@ function RoleList() {
         setRole(role.filter((role) => role.code !== code));
       })
       .catch((error) => {
-        console.error('Error deleting role:', error);
+        console.error('Error deleting Role:', error);
       });
   };
 
   return (
     <div className='container'>
-      <div className="text container-table">Role List</div>
+      <div className="text container-table">List - Roles</div>
       <table className="styled-table">
         <thead>
           <tr>

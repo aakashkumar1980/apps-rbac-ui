@@ -34,7 +34,7 @@ function AppList() {
 
   return (
     <div className='container'>
-      <div className="text container-table">Apps List</div>
+      <div className="text container-table">List - Apps</div>
       <table className="styled-table">
         <thead>
           <tr>

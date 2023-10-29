@@ -19,10 +19,10 @@ export const Navigation = () => {
                 <li><a href="/app/create">Create - App</a></li>
               </ul>
             </li>  
-            <li><a href="#">App Features</a>
+            <li><a href="#">Feature</a>
               <ul>
-                <li><a href="/app_features/list">List - App Features</a></li>
-                <li><a href="/app_features/create">Create - App Features</a></li>
+                <li><a href="/feature/list">List - Feature</a></li>
+                <li><a href="/feature/create">Create - Feature</a></li>
               </ul>
             </li>   
 
@@ -33,16 +33,16 @@ export const Navigation = () => {
               </ul>
             </li> 
 
-            <li style={{marginTop: 30}}><a href="#">Role :: App Features</a>
+            <li style={{marginTop: 30}}><a href="#">Role :: Feature</a>
               <ul>
-                <li><a href="/role_app_features/list">List - Role App Features</a></li>
-                <li><a href="/role_app_features/create">Create - Role App Features</a></li>
+                <li><a href="/role_features/list">List - Roles :: Feature</a></li>
+                <li><a href="/role_features/create">Create - Role :: Feature</a></li>
               </ul>
             </li>
             <li><a href="#">User :: Apps :: Roles</a>
               <ul>
-                <li><a href="/user_apps_roles/list">List - User Apps Roles</a></li>
-                <li><a href="/user_apps_roles/create">Create - User Apps Roles</a></li>
+                <li><a href="/user_apps_roles/list">List - Users :: Apps :: Roles</a></li>
+                <li><a href="/user_apps_roles/create">Create - User :: App :: Role</a></li>
               </ul>
             </li>                                                        
           </ul>

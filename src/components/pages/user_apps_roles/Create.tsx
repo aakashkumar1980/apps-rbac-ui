@@ -50,8 +50,8 @@ function CreateUserAppsRoles() {
     debugger;
     axios.post(`http://localhost:${privilegePassBackendPort}/api/user_apps_roles`, createData)
       .then((response) => {
-        console.log('App created:', response.data);
-        showModal("Result", "User Apps Roles created successfully");
+        console.log('User-Apps-Roles created:', response.data);
+        showModal("Result", "User-Apps-Roles created successfully");
         
         setTimeout(() => {
           closeModal();
@@ -59,15 +59,15 @@ function CreateUserAppsRoles() {
         }, 5000);        
       })
       .catch((error) => {
-        showModal("Result", "User Apps Roles created failed with the following error: "+error);
-        console.error('Error creating app:', error);
+        showModal("Result", "User-Apps-Roles created failed with the following error: "+error);
+        console.error('Error creating User-Apps-Roles:', error);
         
       });
   };
 
   return (
         <div className="container">
-            <div className="text">User Apps Roles</div>
+            <div className="text">Create - User :: Apps :: Roles</div>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <div className="input-data">

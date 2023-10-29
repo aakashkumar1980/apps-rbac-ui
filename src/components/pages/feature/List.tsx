@@ -5,38 +5,38 @@ import '../Table.css';
 
 const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
 
-interface AppFeatures {
+interface Feature {
   code: string;
   description: string;
   appCode: string;
   appDescription: string;
 }
 
-function AppFeaturesList() {
-  const [appFeatures, setAppFeatures] = useState<AppFeatures[]>([]);
+function FeatureList() {
+  const [feature, setFeature] = useState<Feature[]>([]);
 
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/app_features`).then((response) => {
-      setAppFeatures(response.data);
+    axios.get(`http://localhost:${privilegePassBackendPort}/api/feature`).then((response) => {
+      setFeature(response.data);
     });
   }, []);
 
   const handleDelete = (code: string) => {
     // Send a DELETE request to delete the APP with the given code
-    axios.delete(`http://localhost:${privilegePassBackendPort}/api/app_features/${code}`)
+    axios.delete(`http://localhost:${privilegePassBackendPort}/api/feature/${code}`)
       .then((response) => {
-        // Remove the deleted appFeatures from the state
-        setAppFeatures(appFeatures.filter((appFeatures) => appFeatures.code !== code));
+        // Remove the deleted feature from the state
+        setFeature(feature.filter((feature) => feature.code !== code));
       })
       .catch((error) => {
-        console.error('Error deleting appFeatures:', error);
+        console.error('Error deleting Feature:', error);
       });
   };
 
   return (
     <div className='container'>
-      <div className="text container-table">App Features List</div>
+      <div className="text container-table">List - Features</div>
       <table className="styled-table">
         <thead>
           <tr>
@@ -46,11 +46,11 @@ function AppFeaturesList() {
           </tr>
         </thead>
         <tbody>
-          {appFeatures.map((appFeatures) => (
-            <tr key={appFeatures.code}>
-              <td>{appFeatures.appDescription}</td>
-              <td>{appFeatures.description}<br/><p>({appFeatures.code})</p></td>
-              <td><button className="button-62" onClick={() => handleDelete(appFeatures.code)}>Delete</button></td>
+          {feature.map((feature) => (
+            <tr key={feature.code}>
+              <td>{feature.appDescription}</td>
+              <td>{feature.description}<br/><p>({feature.code})</p></td>
+              <td><button className="button-62" onClick={() => handleDelete(feature.code)}>Delete</button></td>
             </tr>
           ))}
           <tr>
@@ -62,4 +62,4 @@ function AppFeaturesList() {
   );
 }
 
-export default AppFeaturesList;
+export default FeatureList;

@@ -33,13 +33,13 @@ function UserAppsRolesList() {
         setUserAppsRoles(userAppsRoles.filter((userAppsRoles) => userAppsRoles.roleCode !== roleCode));
       })
       .catch((error) => {
-        console.error('Error deleting userAppsRoles:', error);
+        console.error('Error deleting UserAppsRoles:', error);
       });
   };  
 
   return (
     <div className='container'>
-      <div className="text container-table">User Apps Roles</div>
+      <div className="text container-table">List - Users :: Apps :: Roles</div>
       <table className="styled-table">
         <thead>
           <tr>

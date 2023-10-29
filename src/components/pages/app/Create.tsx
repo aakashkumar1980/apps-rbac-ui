@@ -39,7 +39,7 @@ function CreateApp() {
 
   return (
         <div className="container">
-            <div className="text">Create App</div>
+            <div className="text">Create - App</div>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
                     <div className="input-data">
