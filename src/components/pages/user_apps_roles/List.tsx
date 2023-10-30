@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../Pages.css';
 import '../Table.css';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 interface UserAppsRoles {
   email: string;
@@ -18,14 +18,14 @@ function UserAppsRolesList() {
 
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/user_apps_roles`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/user_apps_roles`).then((response) => {
       setUserAppsRoles(response.data);
     });
   }, []);
 
   const handleDelete = (email: string, appCode: string, roleCode: string) => {
     // Send a DELETE request to delete the APP with the given code
-    axios.delete(`http://localhost:${privilegePassBackendPort}/api/user_apps_roles/${email}/${appCode}/${roleCode}`)
+    axios.delete(`http://localhost:${backendServerPort}/api/user_apps_roles/${email}/${appCode}/${roleCode}`)
       .then((response) => {
         // Remove the deleted userAppsRoles from the state
         setUserAppsRoles(userAppsRoles.filter((userAppsRoles) => userAppsRoles.email !== email));

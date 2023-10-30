@@ -4,7 +4,7 @@ import '../Pages.css';
 import '../Modal'
 import Modal, { showModal, closeModal } from '../Modal';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 function CreateRole() {
   const [roleData, setRoleData] = useState({ code: '', description: '' });
@@ -19,7 +19,7 @@ function CreateRole() {
     showModal("Processing", "Please wait...");
 
     // Send a POST request to create a new APP
-    axios.post(`http://localhost:${privilegePassBackendPort}/api/role`, roleData)
+    axios.post(`http://localhost:${backendServerPort}/api/role`, roleData)
       .then((response) => {
         console.log('Role created:', response.data);
         showModal("Result", "Role created successfully");

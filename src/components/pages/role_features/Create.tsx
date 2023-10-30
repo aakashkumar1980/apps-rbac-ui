@@ -5,7 +5,7 @@ import '../Modal'
 import '../Select.css';
 import Modal, { showModal, closeModal } from '../Modal';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 interface Role {
   code: string;
@@ -25,10 +25,10 @@ function CreateRoleFeatures() {
   const [selectedFeature, setSelectedFeature] = useState<string>(''); // Initialize as an empty string
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/role`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/role`).then((response) => {
       setRole(response.data);
     });
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/feature`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/feature`).then((response) => {
       setFeature(response.data);
     });    
   }, []);  
@@ -49,7 +49,7 @@ function CreateRoleFeatures() {
       featureCode: selectedFeature,
     };    
     debugger;
-    axios.post(`http://localhost:${privilegePassBackendPort}/api/role_features`, createData)
+    axios.post(`http://localhost:${backendServerPort}/api/role_features`, createData)
       .then((response) => {
         console.log('Role_Features created:', response.data);
         showModal("Result", "Role_Features created successfully");

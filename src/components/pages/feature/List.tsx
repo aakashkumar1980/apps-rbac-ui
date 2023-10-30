@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../Pages.css';
 import '../Table.css';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 interface Feature {
   code: string;
@@ -17,14 +17,14 @@ function FeatureList() {
 
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/feature`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/feature`).then((response) => {
       setFeature(response.data);
     });
   }, []);
 
   const handleDelete = (code: string) => {
     // Send a DELETE request to delete the APP with the given code
-    axios.delete(`http://localhost:${privilegePassBackendPort}/api/feature/${code}`)
+    axios.delete(`http://localhost:${backendServerPort}/api/feature/${code}`)
       .then((response) => {
         // Remove the deleted feature from the state
         setFeature(feature.filter((feature) => feature.code !== code));

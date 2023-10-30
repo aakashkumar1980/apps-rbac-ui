@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../Pages.css';
 import '../Table.css';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 interface App {
   code: string;
@@ -15,14 +15,14 @@ function AppList() {
 
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/app`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/app`).then((response) => {
       setApp(response.data);
     });
   }, []);
 
   const handleDelete = (code: string) => {
     // Send a DELETE request to delete the APP with the given code
-    axios.delete(`http://localhost:${privilegePassBackendPort}/api/app/${code}`)
+    axios.delete(`http://localhost:${backendServerPort}/api/app/${code}`)
       .then((response) => {
         // Remove the deleted app from the state
         setApp(app.filter((app) => app.code !== code));

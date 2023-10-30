@@ -5,7 +5,7 @@ import '../Modal'
 import '../Select.css';
 import Modal, { showModal, closeModal } from '../Modal';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 interface App {
   code: string;
@@ -24,10 +24,10 @@ function CreateUserAppsRoles() {
   const [selectedRole, setSelectedRole] = useState<string>(''); // Initialize as an empty string
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/app`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/app`).then((response) => {
       setApp(response.data);
     });
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/role`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/role`).then((response) => {
       setRole(response.data);
     });    
   }, []);  
@@ -48,7 +48,7 @@ function CreateUserAppsRoles() {
       roleCode: selectedRole
     };    
     debugger;
-    axios.post(`http://localhost:${privilegePassBackendPort}/api/user_apps_roles`, createData)
+    axios.post(`http://localhost:${backendServerPort}/api/user_apps_roles`, createData)
       .then((response) => {
         console.log('User-Apps-Roles created:', response.data);
         showModal("Result", "User-Apps-Roles created successfully");

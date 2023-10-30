@@ -5,7 +5,7 @@ import '../Modal'
 import '../Select.css';
 import Modal, { showModal, closeModal } from '../Modal';
 
-const privilegePassBackendPort = process.env.REACT_APP_NODE_APP_PRIVILEGEPASS_BACKEND;
+const backendServerPort = process.env.REACT_APP_BACKEND_SERVER_PORT;
 
 interface App {
   code: string;
@@ -18,7 +18,7 @@ function CreateFeature() {
   const [selectedApp, setSelectedApp] = useState<string>(''); // Initialize as an empty string
   useEffect(() => {
     // Fetch the list of APPS from your API and update the state
-    axios.get(`http://localhost:${privilegePassBackendPort}/api/app`).then((response) => {
+    axios.get(`http://localhost:${backendServerPort}/api/app`).then((response) => {
       setApp(response.data);
     });
   }, []);  
@@ -38,7 +38,7 @@ function CreateFeature() {
       appCode: selectedApp,
     };    
     debugger;
-    axios.post(`http://localhost:${privilegePassBackendPort}/api/feature`, createData)
+    axios.post(`http://localhost:${backendServerPort}/api/feature`, createData)
       .then((response) => {
         console.log('Feature created:', response.data);
         showModal("Result", "Feature created successfully");

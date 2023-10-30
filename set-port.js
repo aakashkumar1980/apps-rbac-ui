@@ -14,9 +14,9 @@ async function loadConfigFromCloud() {
 async function updateEnvWithConfig(config) {
     const properties = propertiesReader('.env', { writer: { saveSections: true } });
     properties.set("PORT", config.PRIVILEGEPASS_APPLICATION.UI_APP_PORT);
-    properties.set("BACKEND_SERVER_PORT", config.PRIVILEGEPASS_APPLICATION.BACKEND_SERVER_PORT);
+    properties.set("REACT_APP_BACKEND_SERVER_PORT", config.PRIVILEGEPASS_APPLICATION.BACKEND_SERVER_PORT);
     console.log("PORT: ", properties.get("PORT"));
-    console.log("PORT (Backend Server): ", properties.get("BACKEND_SERVER_PORT"));
+    console.log("PORT (Backend Server): ", properties.get("REACT_APP_BACKEND_SERVER_PORT"));
 
     return new Promise((resolve, reject) => {
         properties.save('.env', function(err, data) {
